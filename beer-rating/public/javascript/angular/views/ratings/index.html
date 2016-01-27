@@ -1,0 +1,49 @@
+      <div class="beer-rating-app">
+        <h1>Beer Ratings</h1>
+        <div class="beer-list">
+          <form class="beer-form" id="beer_form" name="beerForm" accept-charset="UTF-8" method="post" data-ng-submit="submitBeer($event)">
+            <input type="text" placeholder="Beer name" data-ng-model="new_beer.name" required="true"/>
+            <input type="submit" value="Add" data-ng-disabled="beerForm.$invalid"/>
+          </form>
+          <a class="beer" data-ng-repeat="beer in beers" data-ng-click="selectBeer(beer.id)">
+            <span><p>{{ beer.name }}</p></span>
+          </a>
+        </div>
+        <div class="beer-rating">
+          <h2>{{ current_beer.name }}</h2>
+          <table class="rating-table">
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Rating</th>
+                <th>Comment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="rating in ratings">
+                <td>{{ rating.author }}</td>
+                <td class="text-center">{{ rating.rating }}</td>
+                <td>{{ rating.comment }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <br/>
+          <h4>Rate this beer</h4>
+          <form class="beer-form" id="rating_form" name="ratingForm" accept-charset="UTF-8" method="post" data-ng-submit="submitRating($event)">
+            <input type="text" placeholder="Your name" data-ng-model="new_rating.author" required="true"/>
+            <br/>
+            <select data-ng-model="new_rating.rating" required="true">
+              <option value="0">Rating</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <br/>
+            <textarea placeholder="Comment" data-ng-model="new_rating.comment"/>
+            <br/>
+            <input type="submit" value="Add" data-ng-disabled="ratingForm.$invalid"/>
+          </form>
+        </div>
+      </div>
